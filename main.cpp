@@ -199,3 +199,362 @@ int main()
 
     return 0;
 }
+
+
+shape initialize(char a,char b)
+{
+    shape S;
+    if( a=='T' && b=='1' ){
+        S.dis_r[1]=0;
+        S.dis_c[1]=1;
+        S.dis_r[2]=1;
+        S.dis_c[2]=0;
+        S.dis_r[3]=1;
+        S.dis_c[3]=1;
+        S.dis_r[4]=1;
+        S.dis_c[4]=2;
+
+        S.amt_rec[0]=1;
+        S.amt_rec[1]=3;
+
+        S.to_find_row[0]=0;
+        S.to_find_row[1]=1;
+        S.to_find_row[2]=0;
+        S.to_find_row[3]=-50;
+    }
+    else if( a=='T' && b=='2' ){
+        S.dis_r[1]=0;
+        S.dis_c[1]=1;
+        S.dis_r[2]=1;
+        S.dis_c[2]=0;
+        S.dis_r[3]=1;
+        S.dis_c[3]=1;
+        S.dis_r[4]=2;
+        S.dis_c[4]=1;
+
+        S.amt_rec[0]=1;
+        S.amt_rec[1]=2;
+        S.amt_rec[2]=1;
+
+        S.to_find_row[0]=0;
+        S.to_find_row[1]=1;
+        S.to_find_row[2]=-50;
+        S.to_find_row[3]=-50;
+    }
+    else if( a=='T' && b=='3' ){
+        S.dis_r[1]=0;
+        S.dis_c[1]=0;
+        S.dis_r[2]=0;
+        S.dis_c[2]=1;
+        S.dis_r[3]=0;
+        S.dis_c[3]=2;
+        S.dis_r[4]=1;
+        S.dis_c[4]=1;
+
+        S.amt_rec[0]=3;
+        S.amt_rec[1]=1;
+
+        S.to_find_row[0]=1;
+        S.to_find_row[1]=1;
+        S.to_find_row[2]=1;
+        S.to_find_row[3]=-50;
+    }
+    else if( a=='T' && b=='4' ){
+        S.dis_r[1]=0;
+        S.dis_c[1]=0;
+        S.dis_r[2]=1;
+        S.dis_c[2]=0;
+        S.dis_r[3]=1;
+        S.dis_c[3]=1;
+        S.dis_r[4]=2;
+        S.dis_c[4]=0;
+
+        S.amt_rec[0]=1;
+        S.amt_rec[1]=2;
+        S.amt_rec[2]=1;
+
+        S.to_find_row[0]=1;
+        S.to_find_row[1]=0;
+        S.to_find_row[2]=-50;
+        S.to_find_row[3]=-50;
+    }
+    else if( a=='L' && b=='1' ){
+        S.dis_r[1]=0;
+        S.dis_c[1]=0;
+        S.dis_r[2]=0;
+        S.dis_c[2]=1;
+        S.dis_r[3]=1;
+        S.dis_c[3]=0;
+        S.dis_r[4]=2;
+        S.dis_c[4]=0;
+
+        S.amt_rec[0]=2;
+        S.amt_rec[1]=1;
+        S.amt_rec[2]=1;
+
+        S.to_find_row[0]=1;
+        S.to_find_row[1]=1;
+        S.to_find_row[2]=-50;
+        S.to_find_row[3]=-50;
+    }
+    else if( a=='L' && b=='2' ){
+        S.dis_r[1]=0;
+        S.dis_c[1]=0;
+        S.dis_r[2]=1;
+        S.dis_c[2]=0;
+        S.dis_r[3]=1;
+        S.dis_c[3]=1;
+        S.dis_r[4]=1;
+        S.dis_c[4]=2;
+
+        S.amt_rec[0]=1;
+        S.amt_rec[1]=3;
+
+        S.to_find_row[0]=1;
+        S.to_find_row[1]=0;
+        S.to_find_row[2]=0;
+        S.to_find_row[3]=-50;
+    }
+    else if( a=='L' && b=='3' ){
+        S.dis_r[1]=0;
+        S.dis_c[1]=1;
+        S.dis_r[2]=1;
+        S.dis_c[2]=1;
+        S.dis_r[3]=2;
+        S.dis_c[3]=0;
+        S.dis_r[4]=2;
+        S.dis_c[4]=1;
+
+        S.amt_rec[0]=1;
+        S.amt_rec[1]=1;
+        S.amt_rec[2]=2;
+
+        S.to_find_row[0]=-1;
+        S.to_find_row[1]=1;
+        S.to_find_row[2]=-50;
+        S.to_find_row[3]=-50;
+    }
+    else if( a=='L' && b=='4' ){
+        S.dis_r[1]=0;
+        S.dis_c[1]=0;
+        S.dis_r[2]=0;
+        S.dis_c[2]=1;
+        S.dis_r[3]=0;
+        S.dis_c[3]=2;
+        S.dis_r[4]=1;
+        S.dis_c[4]=2;
+
+        S.amt_rec[0]=3;
+        S.amt_rec[1]=1;
+
+        S.to_find_row[0]=1;
+        S.to_find_row[1]=1;
+        S.to_find_row[2]=1;
+        S.to_find_row[3]=-50;
+    }
+    else if( a=='J' && b=='1' ){
+        S.dis_r[1]=0;
+        S.dis_c[1]=0;
+        S.dis_r[2]=0;
+        S.dis_c[2]=1;
+        S.dis_r[3]=1;
+        S.dis_c[3]=1;
+        S.dis_r[4]=2;
+        S.dis_c[4]=1;
+
+        S.amt_rec[0]=2;
+        S.amt_rec[1]=1;
+        S.amt_rec[2]=1;
+
+        S.to_find_row[0]=1;
+        S.to_find_row[1]=1;
+        S.to_find_row[2]=-50;
+        S.to_find_row[3]=-50;
+    }
+    else if( a=='J' && b=='2' ){
+        S.dis_r[1]=0;
+        S.dis_c[1]=0;
+        S.dis_r[2]=0;
+        S.dis_c[2]=1;
+        S.dis_r[3]=0;
+        S.dis_c[3]=2;
+        S.dis_r[4]=1;
+        S.dis_c[4]=0;
+
+        S.amt_rec[0]=3;
+        S.amt_rec[1]=1;
+
+        S.to_find_row[0]=1;
+        S.to_find_row[1]=1;
+        S.to_find_row[2]=1;
+        S.to_find_row[3]=-50;
+    }
+    else if( a=='J' && b=='3' ){
+        S.dis_r[1]=0;
+        S.dis_c[1]=0;
+        S.dis_r[2]=1;
+        S.dis_c[2]=0;
+        S.dis_r[3]=2;
+        S.dis_c[3]=0;
+        S.dis_r[4]=2;
+        S.dis_c[4]=1;
+
+        S.amt_rec[0]=1;
+        S.amt_rec[1]=1;
+        S.amt_rec[2]=2;
+
+        S.to_find_row[0]=1;
+        S.to_find_row[1]=-1;
+        S.to_find_row[2]=-50;
+        S.to_find_row[3]=-50;
+    }
+    else if( a=='J' && b=='4' ){
+        S.dis_r[1]=0;
+        S.dis_c[1]=2;
+        S.dis_r[2]=1;
+        S.dis_c[2]=0;
+        S.dis_r[3]=1;
+        S.dis_c[3]=1;
+        S.dis_r[4]=1;
+        S.dis_c[4]=2;
+
+        S.amt_rec[0]=1;
+        S.amt_rec[1]=3;
+
+        S.to_find_row[0]=0;
+        S.to_find_row[1]=0;
+        S.to_find_row[2]=1;
+        S.to_find_row[3]=-50;
+    }
+    else if( a=='S' && b=='1' ){
+        S.dis_r[1]=0;
+        S.dis_c[1]=0;
+        S.dis_r[2]=0;
+        S.dis_c[2]=1;
+        S.dis_r[3]=1;
+        S.dis_c[3]=1;
+        S.dis_r[4]=1;
+        S.dis_c[4]=2;
+
+        S.amt_rec[0]=2;
+        S.amt_rec[1]=2;
+
+        S.to_find_row[0]=1;
+        S.to_find_row[1]=1;
+        S.to_find_row[2]=0;
+        S.to_find_row[3]=-50;
+    }
+    else if( a=='S' && b=='2' ){
+        S.dis_r[1]=0;
+        S.dis_c[1]=1;
+        S.dis_r[2]=1;
+        S.dis_c[2]=0;
+        S.dis_r[3]=1;
+        S.dis_c[3]=1;
+        S.dis_r[4]=2;
+        S.dis_c[4]=0;
+
+        S.amt_rec[0]=1;
+        S.amt_rec[1]=2;
+        S.amt_rec[2]=1;
+
+        S.to_find_row[0]=0;
+        S.to_find_row[1]=1;
+        S.to_find_row[2]=-50;
+        S.to_find_row[3]=-50;
+    }
+    else if( a=='Z' && b=='1' ){
+        S.dis_r[1]=0;
+        S.dis_c[1]=1;
+        S.dis_r[2]=0;
+        S.dis_c[2]=2;
+        S.dis_r[3]=1;
+        S.dis_c[3]=0;
+        S.dis_r[4]=1;
+        S.dis_c[4]=1;
+
+        S.amt_rec[0]=2;
+        S.amt_rec[1]=2;
+
+        S.to_find_row[0]=0;
+        S.to_find_row[1]=1;
+        S.to_find_row[2]=1;
+        S.to_find_row[3]=-50;
+    }
+    else if( a=='Z' && b=='2' ){
+        S.dis_r[1]=0;
+        S.dis_c[1]=0;
+        S.dis_r[2]=1;
+        S.dis_c[2]=0;
+        S.dis_r[3]=1;
+        S.dis_c[3]=1;
+        S.dis_r[4]=2;
+        S.dis_c[4]=1;
+
+        S.amt_rec[0]=1;
+        S.amt_rec[1]=2;
+        S.amt_rec[2]=1;
+
+        S.to_find_row[0]=1;
+        S.to_find_row[1]=0;
+        S.to_find_row[2]=-50;
+        S.to_find_row[3]=-50;
+    }
+    else if( a=='I' && b=='1' ){
+        S.dis_r[1]=0;
+        S.dis_c[1]=0;
+        S.dis_r[2]=1;
+        S.dis_c[2]=0;
+        S.dis_r[3]=2;
+        S.dis_c[3]=0;
+        S.dis_r[4]=3;
+        S.dis_c[4]=0;
+
+        S.amt_rec[0]=1;
+        S.amt_rec[1]=1;
+        S.amt_rec[2]=1;
+        S.amt_rec[3]=1;
+
+        S.to_find_row[0]=1;
+        S.to_find_row[1]=-50;
+        S.to_find_row[2]=-50;
+        S.to_find_row[3]=-50;
+    }
+    else if( a=='I' && b=='2' ){
+        S.dis_r[1]=0;
+        S.dis_c[1]=0;
+        S.dis_r[2]=0;
+        S.dis_c[2]=1;
+        S.dis_r[3]=0;
+        S.dis_c[3]=2;
+        S.dis_r[4]=0;
+        S.dis_c[4]=3;
+
+        S.amt_rec[0]=4;
+
+        S.to_find_row[0]=1;
+        S.to_find_row[1]=1;
+        S.to_find_row[2]=1;
+        S.to_find_row[3]=1;
+    }
+    else if( a=='O' ){
+        S.dis_r[1]=0;
+        S.dis_c[1]=0;
+        S.dis_r[2]=0;
+        S.dis_c[2]=1;
+        S.dis_r[3]=1;
+        S.dis_c[3]=0;
+        S.dis_r[4]=1;
+        S.dis_c[4]=1;
+
+        S.amt_rec[0]=2;
+        S.amt_rec[1]=2;
+
+        S.to_find_row[0]=1;
+        S.to_find_row[1]=1;
+        S.to_find_row[2]=-50;
+        S.to_find_row[3]=-50;
+    }
+
+    return S;
+}
