@@ -106,10 +106,20 @@ int main()
 
 
         ///get row_to_place
-        
+        int k=max(col_top[ref_pt]+cur_type.to_find_row[0],col_top[ref_pt+1]+cur_type.to_find_row[1]);
+        for(i=2;i<4;i++){
+            k=max(k,col_top[ref_pt+i]+cur_type.to_find_row[i]);
+        }
+        row_to_place=k;
+        cout<<"row_to_place "<<row_to_place<<endl;
 
         ///fill blank and modify col_top
-        
+        for(i=1;i<=4;i++){
+            row[trans[row_to_place+cur_type.dis_r[i]]].col[ref_pt+cur_type.dis_c[i]]=1;
+            col_top[ref_pt+cur_type.dis_c[i]]=row_to_place+cur_type.dis_r[i];
+            cout<<"row: row_to_place+cur_type.dis_r[i]] "<<row_to_place+cur_type.dis_r[i]<<endl;
+            cout<<"col: ref_pt+cur_type.dis_c[i] "<<ref_pt+cur_type.dis_c[i]<<endl;
+        }
 
         ///modify detect and see 消除與否
         
