@@ -34,9 +34,11 @@ int main()
     char type[2];
     int ref_pt,row_to_place,col_top[25]={0};
     int _ref_pt[2];
+    int _move[4]={0},step=0; //_move: 由下往上，哪一列會被消滅 ; step: 放下這個方塊有幾列會被消滅
     int *trans; //trans[real_row]=row index
     ROW *row;
     shape cur_type;
+    int clear_row,tmp;
     int gameover=0;
 
     ifstream inFile("Tetris.data",ios::in);
@@ -139,6 +141,35 @@ int main()
             }
             else
                 _move[i]=0;
+        }
+
+        ///if有消滅
+        if(_move[0]||_move[1]||_move[2]||_move[3]){
+            ///modify trans
+            for(i=0;i<4;i++){
+                if(_move[i]!=m && _move[i]!=0){
+                        tmp=trans[_move[i]];  //要被消除的row的index
+                        for(j=_move[i];j<m;j++)
+                            trans[j]=trans[j+1];
+                        trans[m]=tmp;
+                    }
+                else{}
+            }
+
+            ///change col_top
+            for(j=1;j<=n;j++){
+                if(col_top[j]!=0){
+                    col_top[j]--;
+                    while(row[trans[col_top[j]]].col[j]==0){
+                        if(col_top[j]==0) break;
+                        else  col_top[j]--;
+                    }
+                }
+                else{
+                    cout<<"error: col_top should>0"<<endl;
+                }
+                cout<<"col_top["<<j<<"] "<<col_top[j]<<endl;
+            }
         }
 
         ///超出範圍?
