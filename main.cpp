@@ -173,7 +173,13 @@ int main()
         }
 
         ///超出範圍?
-        
+        for(i=1;i<=n;i++){
+            if(col_top[i]>m){
+                gameover=1;
+                break;
+            }
+        }
+        if(gameover) break;
 
     }
 
