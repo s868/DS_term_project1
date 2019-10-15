@@ -122,7 +122,24 @@ int main()
         }
 
         ///modify detect and see 消除與否
-        
+        for(i=0;i<4;i++){
+            cout<<row[trans[row_to_place+i]].detect<<endl;
+            row[trans[row_to_place+i]].detect = row[trans[row_to_place+i]].detect + cur_type.amt_rec[i];
+            cout<<"row[trans["<<row_to_place+i<<"]].detect "<<row[trans[row_to_place+i]].detect<<endl;
+            if(row[trans[row_to_place+i]].detect==n){  //row_to_place+i這行要被消滅
+
+                clear_row=row_to_place+i;
+                cout<<"clear_row "<<clear_row<<endl;
+                //clear row
+                row[trans[clear_row]].clear_row();
+
+                //use _move to change trans and col_top later
+                _move[i]=clear_row-step;
+                step++;
+            }
+            else
+                _move[i]=0;
+        }
 
         ///超出範圍?
         
