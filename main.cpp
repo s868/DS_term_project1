@@ -71,9 +71,9 @@ int main()
     else n=_n[0];
     cout<<"m="<<m<<",n="<<n<<endl;
 
-    trans=new int[m+6];
-    row=new ROW[m+6];
-    for(i=0;i<m+6;i++) trans[i]=i;
+    trans=new int[m+8];
+    row=new ROW[m+8];
+    for(i=0;i<m+8;i++) trans[i]=i;
 
     //inFile>>skipws; //讀取第一個非空格字符
     while(!inFile.eof()){
@@ -81,13 +81,20 @@ int main()
 
         ///讀type和reference pt
         i=0;
+
+        //濾掉空格或換行
         do{
             inFile>>x;
+        }
+        while(!isalpha(x)&&!isdigit(x));
+
+        do{
             if(x=='E'){  //END
                 gameover=1;
                 break;
             }
             type[i]=x;
+            inFile>>x;
             i++;
         }while(isalpha(x)||isdigit(x));
         if(gameover) break;
@@ -124,6 +131,7 @@ int main()
         }
 
         ///modify detect and see 消除與否
+        int eliminate=0;  //看下面有無消除
         for(i=0;i<4;i++){
             cout<<row[trans[row_to_place+i]].detect<<endl;
             row[trans[row_to_place+i]].detect = row[trans[row_to_place+i]].detect + cur_type.amt_rec[i];
@@ -131,13 +139,26 @@ int main()
             if(row[trans[row_to_place+i]].detect==n){  //row_to_place+i這行要被消滅
 
                 clear_row=row_to_place+i;
-                cout<<"clear_row "<<clear_row<<endl;
+                
                 //clear row
-                row[trans[clear_row]].clear_row();
+                if(clear_row<=m){
+                    row[trans[clear_row]].clear_row();
+                    _move[i]=clear_row-step;
+                    eliminate=1;
+                    
+                    cout<<"clear_row "<<clear_row<<endl;
+                }
+                else{
+                    if(i>0 && eliminate!=0){  ///git: 如果下面有消除 m行以上的就可掉下來並消除
+                        row[trans[clear_row]].clear_row();
+                        _move[i]=clear_row-step;
+                    }
+                    else
+                        _move[i]=0;
 
-                //use _move to change trans and col_top later
-                _move[i]=clear_row-step;
-                step++;
+                    cout<<"clear_row "<<clear_row<<endl;
+                }
+                step++; 
             }
             else
                 _move[i]=0;
@@ -147,19 +168,33 @@ int main()
         if(_move[0]||_move[1]||_move[2]||_move[3]){
             ///modify trans
             for(i=0;i<4;i++){
-                if(_move[i]!=m && _move[i]!=0){
+                if(_move[i]!=0){   ///git: remove restrict of _move[i]==m
                         tmp=trans[_move[i]];  //要被消除的row的index
-                        for(j=_move[i];j<m;j++)
+                        cout<<"_move["<<i<<"] "<<_move[i]<<endl;
+                        for(j=_move[i];j<m+8-1;j++)
                             trans[j]=trans[j+1];
-                        trans[m]=tmp;
+
+                        trans[m+8-1]=tmp;
+
                     }
-                else{}
+                cout<<"---------NOW---------"<<endl;
+                for(int l=m+8-1;l>=1;l--){
+                    for(int h=1;h<=n;h++){
+                        cout<<row[trans[l]].col[h];
+                    }
+                    cout<<endl;
+                }
+                cout<<"----------------------"<<endl;
+
             }
+
 
             ///change col_top
             for(j=1;j<=n;j++){
                 if(col_top[j]!=0){
+                    cout<<"ori "<<col_top[j]<<endl;
                     col_top[j]--;
+                    cout<<"row[trans[col_top[j]]].col[j]"<<row[trans[col_top[j]]].col[j]<<endl;
                     while(row[trans[col_top[j]]].col[j]==0){
                         if(col_top[j]==0) break;
                         else  col_top[j]--;
@@ -184,10 +219,10 @@ int main()
 
     }
 
-    ///write into Tetris.output
-    ofstream outFile("Tetris.output",ios::out);
+    ///write into Tetris.final
+    ofstream outFile("Tetris.final",ios::out);
     if(!outFile){
-        cout<<"cannot open Tetris.output"<<endl;
+        cout<<"cannot open Tetris.final"<<endl;
         return 1;
     }
 
