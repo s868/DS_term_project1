@@ -131,7 +131,7 @@ int main()
         }
 
         ///modify detect and see 消除與否
-        int eliminate=0;  //看下面有無消除
+        int eliminate=0;  //看下面(合法區域內)有無消除
         for(i=0;i<4;i++){
             cout<<row[trans[row_to_place+i]].detect<<endl;
             row[trans[row_to_place+i]].detect = row[trans[row_to_place+i]].detect + cur_type.amt_rec[i];
@@ -149,14 +149,14 @@ int main()
                     cout<<"clear_row "<<clear_row<<endl;
                 }
                 else{
-                    if(i>0 && eliminate!=0){  ///git: 如果下面有消除 m行以上的就可掉下來並消除
+                    if(i>0 && eliminate!=0){  //如果下面有消除 m行以上的就可掉下來並消除
                         row[trans[clear_row]].clear_row();
                         _move[i]=clear_row-step;
+
+                        cout<<"clear_row "<<clear_row<<endl;
                     }
                     else
                         _move[i]=0;
-
-                    cout<<"clear_row "<<clear_row<<endl;
                 }
                 step++; 
             }
@@ -168,7 +168,7 @@ int main()
         if(_move[0]||_move[1]||_move[2]||_move[3]){
             ///modify trans
             for(i=0;i<4;i++){
-                if(_move[i]!=0){   ///git: remove restrict of _move[i]==m
+                if(_move[i]!=0){   //remove restrict of _move[i]==m
                         tmp=trans[_move[i]];  //要被消除的row的index
                         cout<<"_move["<<i<<"] "<<_move[i]<<endl;
                         for(j=_move[i];j<m+8-1;j++)
@@ -177,6 +177,7 @@ int main()
                         trans[m+8-1]=tmp;
 
                     }
+                    
                 cout<<"---------NOW---------"<<endl;
                 for(int l=m+8-1;l>=1;l--){
                     for(int h=1;h<=n;h++){
